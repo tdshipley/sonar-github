@@ -235,7 +235,7 @@ public class PullRequestIssuePostJobTest {
     when(context.issues()).thenThrow(new IllegalStateException(innerMsg));
     pullRequestIssuePostJob.execute(context);
 
-    String msg = "SonarQube analysis failed: " + innerMsg;
+    String msg = "SonarQube failed to complete the review of this pull request: " + innerMsg;
     verify(pullRequestFacade).createOrUpdateSonarQubeStatus(GHCommitState.ERROR, msg);
   }
 }
